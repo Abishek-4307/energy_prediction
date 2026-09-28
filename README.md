@@ -137,8 +137,6 @@ The system exposes endpoints to export prediction outputs for external reporting
 | Endpoint | Method | Description |
 | :--- | :--- | :--- |
 | `/` | `GET` | Main prediction dashboard |
-| `/data.csv?voltage=220&intensity=10` | `GET` | Download prediction report as a CSV file |
-| `/data.json?voltage=220&intensity=10` | `GET` | Fetch JSON prediction payload (Power BI / REST) |
 
 ---
 
