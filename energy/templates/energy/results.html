@@ -1,0 +1,47 @@
+    {% if error %}
+        <div class="error card">
+            <strong>Error:</strong> {{ error }}
+        </div>
+    {% elif prediction %}
+        <div class="card grid">
+            <div>
+                <h2>Model scores</h2>
+                <p>Linear Regression: {{ lr_score }}</p>
+                <p>Decision Tree: {{ dt_score }}</p>
+                <p>Random Forest: {{ rf_score }}</p>
+            </div>
+            <div>
+                <h2>Prediction</h2>
+                <p><strong>Daily energy:</strong> {{ prediction }} kWh</p>
+                <p><strong>Monthly units:</strong> {{ units }} kWh</p>
+                <p><strong>Estimated bill:</strong> ₹ {{ bill }}</p>
+                <p><strong>Peak consumption:</strong> {{ peak_period }}</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Hourly prediction</h2>
+            <div class="chart-key">
+                {% for item in hourly_data %}
+                    <div class="bar-item">
+                        <div class="bar" data-height="{{ item.height }}" title="{{ item.value }} kWh"></div>
+                        <div class="bar-label">{{ item.label }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Precaution</h2>
+            <p>{{ precaution }}</p>
+        </div>
+
+        <script>
+            document.querySelectorAll('.bar[data-height]').forEach(bar => {
+                const height = bar.dataset.height;
+                if (height) {
+                    bar.style.height = `${height}px`;
+                }
+            });
+        </script>
+    {% endif %}

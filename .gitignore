@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+*$py.class
+
+# SQLite database (optional, keep or ignore as desired)
+# db.sqlite3
+
+# Environment
+.env
+venv/
+env/
+ENV/
+
+# VS Code settings
+.vscode/
