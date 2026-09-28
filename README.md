@@ -15,9 +15,6 @@ A web-based machine learning application built with **Django** and **scikit-lear
 - **Smart Usage Recommendations**: Provides dynamic, actionable energy conservation tips based on current electrical intensity.
 - **Visual Hourly Breakdown**: Responsive CSS bar chart showing predicted energy usage across every hour of the day.
 - **In-Memory Model Caching**: Loads and trains the dataset once on initial request to deliver sub-second predictions without retraining.
-- **Export & Power BI Integration**:
-  - Download predictions as **CSV** (`/data.csv`)
-  - Live data feed as **JSON** (`/data.json`) for dashboards and BI tools.
 
 ---
 
@@ -130,9 +127,7 @@ http://127.0.0.1:8000/
 
 ---
 
-## 🌐 API & Data Export Endpoints
-
-The system exposes endpoints to export prediction outputs for external reporting:
+## 🌐 Application URL
 
 | Endpoint | Method | Description |
 | :--- | :--- | :--- |
