@@ -68,7 +68,7 @@ def compute_prediction_data(voltage, intensity):
         daily_energy += pred
 
     daily_energy *= 0.2
-    units = daily_energy * 30
+    units = daily_energy * 60
 
     peak_index = int(np.argmax([value for _, _, value in hourly_data]))
     peak_period = f"{format_hour(peak_index)} – {format_hour((peak_index + 3) % 24)}"
@@ -161,7 +161,7 @@ def export_predictions_csv(request):
 
     writer.writerow([])
     writer.writerow(['Daily energy', prediction_data['prediction']])
-    writer.writerow(['Monthly units', prediction_data['units']])
+    writer.writerow(['Bi-monthly units', prediction_data['units']])
     writer.writerow(['Estimated bill', prediction_data['bill']])
     writer.writerow(['Peak consumption', prediction_data['peak_period']])
     writer.writerow(['Linear Regression score', prediction_data['lr_score']])

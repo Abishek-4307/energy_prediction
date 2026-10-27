@@ -11,7 +11,7 @@ A web-based machine learning application built with **Django** and **scikit-lear
   - Predicts 24-hour hourly energy distribution.
   - Multi-model evaluation comparing **Ridge Regression**, **Decision Tree Regressor**, and **Random Forest Regressor** using $R^2$ scores.
   - Peak-usage window detection (e.g., peak demand hours).
-- **Automated Bill Calculation**: Computes estimated monthly electricity bills using **TNEB (Tamil Nadu Electricity Board)** slab rates.
+- **Automated Bill Calculation**: Computes estimated bi-monthly electricity bills using the supplied domestic tariff slabs.
 - **Smart Usage Recommendations**: Provides dynamic, actionable energy conservation tips based on current electrical intensity.
 - **Visual Hourly Breakdown**: Responsive CSS bar chart showing predicted energy usage across every hour of the day.
 - **In-Memory Model Caching**: Loads and trains the dataset once on initial request to deliver sub-second predictions without retraining.
@@ -73,17 +73,22 @@ energy_prediction_project/
 
 ---
 
-## 🧾 TNEB Tariff Slabs
+## 🧾 Domestic Tariff Slabs (Bi-Monthly)
 
-The monthly bill is calculated using monthly consumed units ($kWh = \text{Daily } kWh \times 30$):
+The estimated bi-monthly consumption is calculated as daily energy multiplied by 60. The tariff is progressive within each tier:
 
-| Slab Units (kWh) | Rate per Unit (₹) |
-| :--- | :--- |
-| **0 – 100** | Free (₹ 0.00) |
-| **101 – 200** | ₹ 2.25 |
-| **201 – 400** | ₹ 4.50 |
-| **401 – 500** | ₹ 6.00 |
-| **> 500** | ₹ 8.00 |
+| Total bi-monthly consumption | Slab units | Rate per unit (₹) |
+| :--- | :--- | :--- |
+| Up to 500 units | 1–200 | Free |
+| Up to 500 units | 201–400 | 4.70 |
+| Up to 500 units | 401–500 | 6.30 |
+| Above 500 units | 1–100 | Free |
+| Above 500 units | 101–400 | 4.70 |
+| Above 500 units | 401–500 | 6.30 |
+| Above 500 units | 501–600 | 8.40 |
+| Above 500 units | 601–800 | 9.45 |
+| Above 500 units | 801–1,000 | 10.50 |
+| Above 500 units | Above 1,000 | 11.55 |
 
 ---
 
