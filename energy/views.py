@@ -2,7 +2,7 @@ import csv
 import numpy as np
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
-from django.views.decorators.http import require_GET
+from django.views.decorators.http import require_GET, require_safe
 from sklearn.metrics import r2_score
 
 from src.data_loader import load_data
@@ -107,8 +107,16 @@ def compute_prediction_data(voltage, intensity):
 
 from django.template.loader import render_to_string
 
-@require_GET
+@require_safe
+def health_check(request):
+    return HttpResponse("ok", status=200)
+
+@require_safe
 def home(request):
+    # Allow HEAD requests without running predictions or training models
+    if request.method == "HEAD":
+        return HttpResponse(status=200)
+
     voltage = float(request.GET.get('voltage', 220.0))
     intensity = float(request.GET.get('intensity', 10.0))
     context = {
